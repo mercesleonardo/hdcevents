@@ -19,11 +19,16 @@ class EventController extends Controller
         return view('events.create');
     }
 
-    public function enter() {
-        return view('events.enter');
-    }
+    public function store(Request $request) {
+        $event = new Event;
 
-    public function cadastro() {
-        return view('events.cadastrar');
+        $event->title = $request->title;
+        $event->city = $request->city;
+        $event->private = $request->private;
+        $event->description = $request->description;
+
+        $event->save();
+
+        return redirect('/');
     }
 }
